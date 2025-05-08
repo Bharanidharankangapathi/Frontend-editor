@@ -1,12 +1,8 @@
-
-
-// make jQuery play nice
+ 
 var E = $.noConflict(true);
 
 E(document).ready(function () {
-    
-    // INITIALIZE CODEMIRROR
-    // ------------------------------
+     
     // html code
     var editorHTML = document.editor = CodeMirror.fromTextArea(htmlcode, {
         mode: 'htmlmixed',
@@ -142,16 +138,13 @@ E(document).ready(function () {
     startHTML();
     
     
-    // DEFAULTS
-    // ------------------------------
+    // DEFAULTS 
     var defaultHTML = '<script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js\"></script>\n<main>\n    <h1>Editor</h1>\n    <p>Real-time, responsive HTML/CSS/JS code editor</p>\n    <p>Fork me on <a href=\"https://github.com/markhillard/Editor\" target=\"_blank\">GitHub</a></p>\n</main>',
         defaultCSS = '@import url(\"https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700\&display=swap\");\n\nhtml,body {\n    background-color: #282a36;\n    color: #fff;\n    font-family: \"Fira Code\", monospace;\n    font-weight: 400;\n    overflow: hidden;\n    text-align: center;\n}\n\nmain {\n    left: 50%;\n    position: absolute;\n    top: 50%;\n    transform: translate(-50%, -50%);\n    width: 80%;\n}\n\nh1 {\n    font-size: 8rem;\n    font-weight: 700;\n    margin: 0;\n}\n\np {\n    font-size: 1rem;\n    letter-spacing: .03rem;\n    line-height: 1.45;\n    margin: 1rem 0;\n}\n\na {\n    color: #6d8a88;\n}\n\n@media only screen and (max-width: 600px) {\n    h1 {\n        font-size: 4rem;\n    }\n}',
         defaultJS = '$(document).ready(function () {\n    $(\'h1\').fadeOut(800).fadeIn(800);\n    $(\'p\').first().delay(400).fadeOut(800).fadeIn(400);\n    $(\'p\').last().delay(800).fadeOut(800).fadeIn(400);\n});',
         defaultFontSize = '100';
         
-    
-    // LOCAL STORAGE
-    // ------------------------------
+     
     // set default html value
     if (localStorage.getItem('htmlcode') === null) {
         localStorage.setItem('htmlcode', defaultHTML);
@@ -179,10 +172,7 @@ E(document).ready(function () {
     
     // load font size
     fontSize.val(localStorage.getItem('fontsize'));
-    
-    
-    // EDITOR UPDATES
-    // ------------------------------
+     
     // editor update (html)
     var delayHTML;
     editorHTML.on('change', function () {
@@ -214,9 +204,7 @@ E(document).ready(function () {
     // run editor update (html)
     loadHTML();
     
-    
-    // DEPENDENCY INJECTION
-    // ------------------------------
+     
     // cdnjs typeahead search
     var query = E('.cdnjs-search .query');
     E.get('https://api.cdnjs.com/libraries?fields=version,description').done(function (data) {
@@ -294,10 +282,7 @@ E(document).ready(function () {
             alert('dependency added successfully!');
         }
     }
-    
-    
-    // RESIZE FUNCTIONS
-    // ------------------------------
+     
     // drag handle to resize code pane
     var resizeHandle = E('.code-pane'),
         widthBox = E('.preview-width'),
@@ -332,10 +317,7 @@ E(document).ready(function () {
             editorJS.refresh();
         }
     });
-    
-    
-    // GENERAL FUNCTIONS
-    // ------------------------------
+     
     // code pane and wrap button swapping
     function swapOn(elem) {
         elem.css({
@@ -441,10 +423,7 @@ E(document).ready(function () {
     indentWrappedLines(editorHTML);
     indentWrappedLines(editorCSS);
     indentWrappedLines(editorJS);
-    
-    
-    // UTILITY FUNCTIONS
-    // ------------------------------
+     
     // font size
     fontSize.on('change keyup', function () {
         var size = E(this).val();
